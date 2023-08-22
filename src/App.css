@@ -2,6 +2,31 @@
   text-align: center;
 }
 
+drag {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.list {
+  padding-left: 20px;
+  text-align: left;
+  border-bottom: 1px solid grey;
+}
+
+.black-nav {
+  display: flex;
+  background: #282c34;
+  width: 100%;
+  color: #fff;
+  padding-left: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
