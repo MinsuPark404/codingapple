@@ -12,10 +12,13 @@ function App() {
  
   let [postTitle, setPostTitle] = useState(['동명지하', '형제네생갈비', '키키키']);
   let [like, setLike] = useState([0, 0, 0]);
-  // let [like1, setLike1] = useState(0);
-  // let [like2, setLike2] = useState(0);
   let [modal, setModal] = useState(false);
-  console.log(setLike);
+  
+  const trans = ()=>{
+    let copy = [...postTitle];
+    copy[0] = '구미구미';
+    setPostTitle(copy);
+  }
 
   return (
     <div className="App">
@@ -30,30 +33,7 @@ function App() {
         setPostTitle(copy)
       }}>가나다순정렬</button>
 
-      <button onClick={()=>{
-        let copy = [...postTitle];
-        copy[0] = '구미구미';
-        setPostTitle(copy);
-      }}>버튼</button>
-
-      
-      {/* <div className='list'>
-        <h4>{ postTitle[0] } <span onClick={()=>{ setLike1(like1 + 1) }}>👍</span> {like1} </h4>
-        <p>2월 17일 발행</p>
-      </div>
-
-      <div className='list'>
-        <h4>{ postTitle[1] } <span onClick={()=>{ setLike2(like2 + 1) }}>👍</span> {like2} </h4>
-        <p>2월 17일 발행</p>
-      </div>
-
-      <div className='list'>
-        <h4 onClick={()=>{
-          setModal(!modal)
-        }}>{ postTitle[2] }</h4>
-        <p>2월 17일 발행</p>
-      </div> */}
-     
+      <button onClick={ trans }>버튼</button>
 
       {
         postTitle.map(function(a, i){
@@ -61,14 +41,12 @@ function App() {
             <div className='list' key={i}>
               <h4 onClick={()=>{setModal(!modal)}}>
                 { postTitle[i] }
-              </h4>
-              <span onClick={()=>{ 
-                let copy = [...like]
-                copy[i] += 1
-                setLike(copy) 
-              }}>👍
-              </span> {like[i]}
-
+                <span onClick={()=>{ 
+                  let copy = [...like]
+                  copy[i] += 1
+                  setLike(copy) 
+                }}>👍</span> {like[i]}
+              </h4>              
               <p>2월 17일 발행</p>
             </div>
           );
@@ -76,7 +54,7 @@ function App() {
       }
 
       {
-        modal == true ? <Modal/> : null
+        modal == true ? <Modal postTitle={postTitle} setPostTitle={setPostTitle}/> : null
       }
 
       </drag>
@@ -84,12 +62,13 @@ function App() {
   );
 }
 
-const Modal = () => {
+const Modal = (props) => {
   return (
     <div className='modal'>
-      <h4>제목</h4>
+      <h4>{props.postTitle[1]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button>글수정</button>
     </div>
   );
 }
